@@ -1,0 +1,23 @@
+// This is my first grammar with PEST. Please be kind and constructive.
+
+WHITESPACE = _{ (" " | "\t")+ }
+
+file = @{ SOI ~ statement* ~ EOI }
+    statement = { WHITESPACE? ~ (include | keycode | ignore)? ~ WHITESPACE? ~ comment? ~ NEWLINE }
+    comment = _{ ("!" | "#") ~ whatever }
+
+    include = !{ ^"include" ~ quotepath }
+        quotepath = @{ "\"" ~ path ~ "\"" }
+            path = !{ (ASCII_ALPHANUMERIC | "-" | ".")+ }
+
+    keycode = !{ ^"keycode" ~ num ~ "=" ~ val* }
+        num = @{ ASCII_DIGIT+ }
+        val = @{ (ASCII_ALPHANUMERIC | "_" | "+")+ }
+
+    ignore = _{ comment | _keymaps | _strings | _mod | _compose | _string }
+        whatever = _{ (!NEWLINE ~ ANY)* }
+        _keymaps = _{ "keymaps" ~ whatever }
+        _strings = _{ "strings" ~ whatever }
+        _mod = _{ ("shift" | "alt" | "control" | "plain") ~ whatever }
+        _compose = _{ "compose" ~ whatever }
+        _string = _{ "string" ~ whatever }
