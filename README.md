@@ -36,7 +36,9 @@ While it does not convey the full functionality of `kbd`, it's good enough for i
 If you want to check out how a driver handles this format, check [mine](https://github.com/daisogen/kbd).
 
 ## Usage
-Clone the official kbd repository and execute `kbd2csv` with the layout name to generate the full self-contained CSV layout file:
+Feeling lazy? [Download the CSV files directly!](https://github.com/jlxip/csvkeymaps)
+
+To actually convert the files, clone the official kbd repository and execute `kbd2csv` with the layout name to generate the full self-contained CSV layout file:
 ```bash
 $ git clone https://github.com/legionus/kbd
 $ git clone https://github.com/jlxip/kbd2csv
